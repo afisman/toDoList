@@ -1,12 +1,20 @@
 import React from 'react';
 import './ToDoCard.css';
+import { removeToDo } from '../../features/toDoSlice/toDoSlice';
+import { useDispatch } from 'react-redux';
 
 const ToDoCard = ({ toDo }) => {
+    const dispatch = useDispatch()
+
+    const handleRemove = () => {
+        dispatch(removeToDo(toDo.id))
+    }
     return (
         <div className='card'>
-            <h2 className='card__title'>{toDo.description}</h2>
-            <p className='card__priority'>{toDo.priority}</p>
-            <p className='card__deadline'>{(new Date(toDo.deadline)).toDateString()}</p>
+            <p className='card__text'>{toDo.description}</p>
+            <p className='card__text'>{toDo.priority}</p>
+            <p className='card__text'>{(new Date(toDo.deadline)).toDateString()}</p>
+            <button onClick={handleRemove}>Remove</button>
         </div>
     )
 }

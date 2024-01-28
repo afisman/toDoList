@@ -10,19 +10,26 @@ import { useNavigate } from 'react-router-dom';
 
 const ToDoForm = () => {
     const dispatch = useDispatch();
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         description: '',
         priority: 1,
         deadline: (new Date()).getTime(),
-    })
+        id: null,
+    });
+
+    const setUUID = () => {
+        let id = formData.description + formData.priority + formData.deadline;
+
+        return id
+    }
 
 
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log(typeof (formData.deadline))
+
 
         dispatch(addToDo(formData));
 
@@ -34,14 +41,14 @@ const ToDoForm = () => {
             <label>Description</label>
             <textarea
                 value={formData.description || ''}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value, id: setUUID() })}
                 cols='20'
                 rows='10'
             />
             <select
                 name="priority"
                 id="priority"
-                onChange={(e) => setFormData({ ...formData, priority: e.target.value })}
+                onChange={(e) => setFormData({ ...formData, priority: e.target.value, id: setUUID() })}
             >
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -51,7 +58,7 @@ const ToDoForm = () => {
 
             </select>
 
-            <DatePicker selected={new Date(formData.deadline)} onChange={(date) => setFormData({ ...formData, deadline: date.getTime() })} />
+            <DatePicker selected={new Date(formData.deadline)} onChange={(date) => setFormData({ ...formData, deadline: date.getTime(), id: setUUID() })} />
 
             <input type="submit" />
 

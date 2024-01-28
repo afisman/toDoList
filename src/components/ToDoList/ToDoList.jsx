@@ -14,10 +14,17 @@ const ToDoList = () => {
         navigate('/add')
     }
 
+    console.log(toDoList)
+
     return (
         <>
             <div>ToDoList</div>
             <button onClick={handleClick}>Add</button>
+            <div className='list__headers'>
+                <p className='list__headers__text'>Task</p>
+                <p className='list__headers__text'>Priority</p>
+                <p className='list__headers__text'>Deadline</p>
+            </div>
             <div className='toDo__list'>
                 {toDoList.map((el, i) => (
                     <ToDoCard toDo={el} key={i} />
