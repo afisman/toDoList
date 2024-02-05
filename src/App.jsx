@@ -1,18 +1,20 @@
-import { Route, Routes } from 'react-router-dom';
-import './App.css';
-import ToDoList from './components/ToDoList/ToDoList';
-import ToDoForm from './components/ToDoForm/ToDoForm';
 
 
-function App() {
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import AddTodoForm from './components/AddTodoForm/AddTodoForm';
+import TodoList from './components/TodoList2/TodoList2';
+import TotalCompleteItems from './components/TotalCompleteItems/TotalCompleteItems';
+
+const App = () => {
   return (
-    <>
-      <Routes>
-        <Route path='/' element={<ToDoList />} />
-        <Route path='/add' element={<ToDoForm />} />
-      </Routes>
-    </>
+    <div className='container bg-white p-4 mt-5'>
+      <h1>My Todo List</h1>
+      <AddTodoForm />
+      <TodoList />
+      <TotalCompleteItems />
+    </div>
   );
-}
+};
 
 export default App;

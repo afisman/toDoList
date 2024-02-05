@@ -3,7 +3,7 @@ import toDoReducer from '../features/toDoSlice/toDoSlice';
 
 export const store = configureStore({
     reducer: {
-        toDo: toDoReducer
+        toDo: toDoReducer,
     },
     middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 })
